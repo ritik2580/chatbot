@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,22 +8,41 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>AI Physician Assistant</h1>
-            <p>Your AI-powered health advisor</p>
+    <div class="main-container">
+
+        <!-- Top Right Account Section -->
+        <div class="account-section">
+            <span class="user-icon">👤</span>
+            <span class="username">Welcome, User</span>
         </div>
 
-        <div class="avatar-container">
-            <img src=".\IMAGE.png" alt="AI Avatar" class="avatar">
+        <!-- Sidebar for History Section -->
+        <div class="sidebar">
+            <h2>Chat History</h2>
+            <ul id="historyList">
+                <!-- Previous chat history will appear here -->
+            </ul>
+            <button id="newChatBtn">New Chat</button>
         </div>
 
-        <div class="response-container">
-            <input type="text" id="userInput" placeholder="Describe your symptoms..." />
-            <button id="getResponseBtn">Ask AI Physician</button>
+        <!-- Main Chatbot Container -->
+        <div class="container">
+            <div class="header">
+                <h1>AI Physician Assistant</h1>
+                <p>Your AI-powered health advisor</p>
+            </div>
 
-            <div class="thinking">Analyzing...</div>
-            <div class="response" id="responseText"></div>
+            <div class="avatar-container">
+               <img src=".\IMAGE.png" alt="AI Avatar" class="avatar">
+            </div>
+
+            <div class="response-container">
+                <input type="text" id="userInput" placeholder="Describe your symptoms..." />
+                <button id="getResponseBtn">Ask AI Physician</button>
+
+                <div class="thinking">Analyzing...</div>
+                <div class="response" id="responseText"></div>
+            </div>
         </div>
     </div>
 
