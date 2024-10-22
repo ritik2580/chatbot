@@ -186,3 +186,5 @@ document.getElementById("userInput").addEventListener("keypress", function(event
 
 // Handle "Ask" button click
 document.getElementById("getResponseBtn").addEventListener("click", getResponse);
+
+
