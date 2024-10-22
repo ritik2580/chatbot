@@ -160,3 +160,127 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: #00c0c0;
 }
+/* General Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #0b0b0b 50%, #1e1e1e);
+    color: #fff;
+    display: flex;
+    height: 100vh;
+}
+
+/* Main Container */
+.main-container {
+    display: flex;
+    width: 100%;
+}
+
+/* Account Section Styling (Top Right Corner) */
+.account-section {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #00ffff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+}
+
+.user-icon {
+    font-size: 24px;
+}
+
+.username {
+    font-weight: bold;
+}
+
+/* Sidebar Styling for Chat History */
+.sidebar {
+    width: 250px;
+    background: #1b1b1b;
+    padding: 20px;
+    height: 100vh;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    color: #00ffff;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: #a0f0f0;
+}
+
+.sidebar li {
+    padding: 10px;
+    background: #2c2c2c;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.sidebar li:hover {
+    background: #00e0e0;
+}
+
+#newChatBtn {
+    padding: 10px;
+    background: #00ffff;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    transition: background 0.3s;
+}
+
+#newChatBtn:hover {
+    background: #00a0a0;
+}
+
+/* Chatbot Main Section (Centered) */
+.container {
+    text-align: center;
+    background: rgba(10, 10, 10, 0.9);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.4), 0 0 100px rgba(0, 255, 255, 0.1);
+    width: 60%;
+    max-width: 800px;
+    margin: auto;
+    animation: popUp 1s ease-out;
+}
+
+.avatar-container {
+    margin-top: 20px;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid #00ffff;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    animation: floatAvatar 3s ease-in-out infinite;
+}
+
+.response-container {
+    margin-top: 40px;
+}
+
+#getResponseBtn, #userInput, .thinking, .response {
+    /* These will inherit from your original code */
+}
