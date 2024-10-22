@@ -32,51 +32,24 @@ const diseaseDatabase = {
         response: "Stomach pain may be caused by indigestion or a virus. Stay hydrated, avoid heavy meals, and rest. If the pain persists, seek medical advice.",
         keywords: ["stomach pain", "cramps", "nausea"]
     },
-    "hypertension": {
-        response: "High blood pressure often has no symptoms, but long-term hypertension can lead to serious complications like heart disease. A low-sodium diet, regular exercise, and prescribed medications can help manage blood pressure. Check your blood pressure regularly and follow up with your doctor."
-    },
-    "allergies": {
-        response: "Common allergy symptoms include sneezing, runny nose, and itchy eyes. Antihistamines can help alleviate symptoms. If you're prone to seasonal allergies, staying indoors during high pollen days and keeping windows closed can reduce exposure."
-    },
-    "bronchitis": {
-        response: "Bronchitis typically presents with a persistent cough, often following a cold. Drinking warm fluids, using a humidifier, and resting can help ease symptoms. If you have difficulty breathing or your symptoms worsen, consult a physician."
-    },
-    "asthma": {
-        response: "Asthma causes difficulty breathing due to airway inflammation. If you're experiencing shortness of breath or wheezing, use your rescue inhaler as prescribed. Long-term control medications can help manage chronic symptoms, but see your doctor if symptoms persist."
-    },
-    "pneumonia": {
-        response: "Pneumonia is a serious lung infection characterized by cough, fever, and difficulty breathing. Rest, fluids, and prescribed antibiotics (if bacterial) are essential for recovery. Seek immediate medical attention if breathing becomes difficult or chest pain worsens."
-    },
-    "depression": {
-        response: "Depression symptoms include persistent sadness, loss of interest in activities, and fatigue. It's important to reach out to a mental health professional for counseling and possible medication. Regular exercise and maintaining social connections can also help improve mood."
-    },
-    "anxiety": {
-        response: "Anxiety can manifest as excessive worry, restlessness, and rapid heart rate. Breathing exercises, mindfulness, and physical activity can help alleviate anxiety symptoms. Consult a mental health professional for therapy or medication options if anxiety persists."
-    },
-    "sinusitis": {
-        response: "Sinusitis often follows a cold and causes facial pain, congestion, and a thick nasal discharge. Steam inhalation, nasal irrigation, and over-the-counter decongestants can help. If symptoms last more than 10 days, consult a doctor for possible antibiotics."
-    },
-    "flu": {
-        response: "Flu symptoms include fever, body aches, and fatigue. Rest, hydration, and over-the-counter fever reducers like acetaminophen can help manage symptoms. Stay home to avoid spreading the virus, and consult a doctor if symptoms worsen or persist."
-    },
-    "covid-19": {
-        response: "COVID-19 symptoms can range from mild to severe and include fever, cough, and difficulty breathing. Isolate yourself from others, stay hydrated, and monitor your oxygen levels if possible. Seek immediate medical attention if you have trouble breathing."
-    },
-    "urinary tract infection (UTI)": {
-        response: "A UTI causes pain during urination, frequent urges to urinate, and cloudy urine. Drink plenty of water, avoid caffeine, and consult your doctor for antibiotics if symptoms worsen."
-    },
-    "back pain": {
-        response: "Back pain is often caused by muscle strain or poor posture. Rest, stretching, and applying heat or cold can help relieve pain. Over-the-counter pain relief may also help. If the pain persists or radiates down your legs, consult a healthcare provider."
-    },
-    "appendicitis": {
-        response: "Appendicitis causes severe pain in the lower right abdomen, often accompanied by fever, nausea, and vomiting. It's a medical emergency, so seek immediate medical attention if you suspect appendicitis."
-    },
-    "eczema": {
-        response: "Eczema causes dry, itchy, and inflamed skin. Moisturizing regularly and avoiding irritants like harsh soaps can help. Topical corticosteroids may be prescribed to reduce inflammation."
-    }
     // Additional diseases can be added here
 };
+// Function to get the response
+function getResponse() {
+    const userInput = document.getElementById("userInput").value;
+    
+    if (userInput) {
+        // Call your function to process input and give a response here
+        processUserInput(userInput);  // Replace with your actual function
+    }
+}
 
+// Adding event listener for "Enter" key
+document.getElementById("userInput").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        getResponse();  // Trigger the response when Enter is pressed
+    }
+});
 // Greetings and conversational responses
 const greetings = [
     "Hello! How can I assist you today?",
@@ -111,6 +84,8 @@ document.getElementById('getResponseBtn').addEventListener('click', function() {
         document.querySelector('.thinking').style.display = 'none';
         document.querySelector('.response').style.display = 'block';
 
+        
+
         // Initialize a variable to track if a match is found
         let foundMatch = false;
 
@@ -135,10 +110,79 @@ document.getElementById('getResponseBtn').addEventListener('click', function() {
                 if (foundMatch) break;
             }
         }
-
+       
+        // Add event listener for the "Enter" key press
+        document.getElementById("userInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                getResponse();  // Trigger the response when Enter is pressed
+            }
+        });
         // Fallback response
         if (!foundMatch) {
             document.getElementById('responseText').innerText = "AI Physician: Sorry, I couldn't find a match for your symptoms. Please provide more details or consult a physician.";
         }
     }, 2500);  // 2.5 seconds delay
 });
+// Simulating chat response and history
+let chatHistory = [];
+
+// Function to simulate AI response
+function getResponse() {
+    const userInput = document.getElementById("userInput").value;
+    const responseText = document.getElementById("responseText");
+    const thinking = document.querySelector('.thinking');
+
+    if (userInput.trim()) {
+        // Show "thinking" animation
+        thinking.style.display = "block";
+        responseText.innerHTML = "";
+
+        // Simulate delay (2-3 seconds) before showing the response
+        setTimeout(() => {
+            thinking.style.display = "none";
+
+            // Sample response
+            let aiResponse = generateAIResponse(userInput);
+            responseText.innerHTML = aiResponse;
+
+            // Add to history
+            addChatToHistory(userInput, aiResponse);
+        }, 2000);
+    }
+}
+
+// Function to add chat to history
+function addChatToHistory(userInput, aiResponse) {
+    const historyList = document.getElementById("historyList");
+    const listItem = document.createElement("li");
+    listItem.textContent = `Q: ${userInput} | A: ${aiResponse}`;
+    historyList.appendChild(listItem);
+
+    // Save in history array
+    chatHistory.push({ question: userInput, answer: aiResponse });
+}
+
+// Function to simulate different AI responses
+function generateAIResponse(userInput) {
+    // This is where you add custom responses for diseases or general answers
+    if (userInput.toLowerCase().includes("fever")) {
+        return "You may have a fever. Rest and stay hydrated.";
+    }
+    return "I'm not sure about your symptoms. Please consult a healthcare provider.";
+}
+
+// New Chat Button (Clears input and response)
+document.getElementById("newChatBtn").addEventListener("click", () => {
+    document.getElementById("userInput").value = "";
+    document.getElementById("responseText").innerHTML = "";
+});
+
+// Handle 'Enter' key for input
+document.getElementById("userInput").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        getResponse();
+    }
+});
+
+// Handle "Ask" button click
+document.getElementById("getResponseBtn").addEventListener("click", getResponse);
