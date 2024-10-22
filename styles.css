@@ -23,7 +23,7 @@ body {
     animation: popUp 1s ease-out;
 }
 
-@keyframes popUp {
+@keyframes  popUp {
     from {
         transform: scale(0.7);
         opacity: 0;
